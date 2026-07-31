@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ecommerce
+  jpa:
+    hibernate:
+      ddl-auto: update

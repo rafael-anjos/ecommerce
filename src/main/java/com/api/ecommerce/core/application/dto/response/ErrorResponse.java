@@ -1,0 +1,13 @@
+package com.api.ecommerce.core.application.dto.response;
+
+import java.time.LocalDateTime;
+
+public record ErrorResponse(
+
+    int status,
+
+    String message,
+
+    LocalDateTime timestamp
+    
+) {}
