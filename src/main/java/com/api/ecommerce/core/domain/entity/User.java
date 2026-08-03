@@ -35,7 +35,7 @@ public class User {
 
     public void changeName ( String name ) {
 
-        if (name == null || name.isBlank()) {
+        if (name == null || name.isBlank() || name.getClass().getSimpleName() != String.class.getSimpleName()) {
             throw new InvalidNameException(name);
         }
 
@@ -45,7 +45,7 @@ public class User {
 
     public void changeEmail ( String email ) {
 
-        if (email == null || email.isBlank()) {
+        if (email == null || email.isBlank() || !email.contains("@")) {
             throw new InvalidEmailException(email);
         }
 
