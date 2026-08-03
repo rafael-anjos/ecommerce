@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.api.ecommerce.core.application.dto.response.ErrorResponse;
 import com.api.ecommerce.core.domain.exception.EmailAlreadyExistsException;
+import com.api.ecommerce.core.domain.exception.InvalidEmailException;
+import com.api.ecommerce.core.domain.exception.InvalidNameException;
 
 @RestControllerAdvice
 public class GlobalHandlerException {
@@ -17,6 +19,20 @@ public class GlobalHandlerException {
     public ResponseEntity<ErrorResponse> handleEmailAlreadyExists ( EmailAlreadyExistsException ex ) {
 
         return buildResponse(HttpStatus.CONFLICT, ex.getMessage());
+
+    }
+
+    @ExceptionHandler ( InvalidNameException.class )
+    public ResponseEntity<ErrorResponse> handleInvalidName ( InvalidNameException ex ) {
+
+        return buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
+
+    }
+
+    @ExceptionHandler ( InvalidEmailException.class )
+    public ResponseEntity<ErrorResponse> handleInvalidEmail ( InvalidEmailException ex ) {
+
+        return buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
 
     }
 

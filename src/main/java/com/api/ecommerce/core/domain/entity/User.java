@@ -2,6 +2,9 @@ package com.api.ecommerce.core.domain.entity;
 
 import java.util.UUID;
 
+import com.api.ecommerce.core.domain.exception.InvalidEmailException;
+import com.api.ecommerce.core.domain.exception.InvalidNameException;
+
 public class User {
     
     private UUID id;
@@ -33,7 +36,7 @@ public class User {
     public void changeName ( String name ) {
 
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Invalid name.");
+            throw new InvalidNameException(name);
         }
 
         this.name = name;
@@ -43,7 +46,7 @@ public class User {
     public void changeEmail ( String email ) {
 
         if (email == null || email.isBlank()) {
-            throw new IllegalArgumentException("Invalid email.");
+            throw new InvalidEmailException(email);
         }
 
         this.email = email;
