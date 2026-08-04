@@ -21,7 +21,7 @@ public class CreateUserUseCase {
 
         User user = new User (
 
-            request.name(), 
+            request.name().toUpperCase(), 
 
             request.email()
             

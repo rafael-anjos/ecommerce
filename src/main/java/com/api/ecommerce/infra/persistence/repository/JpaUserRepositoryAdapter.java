@@ -23,6 +23,12 @@ public class JpaUserRepositoryAdapter implements UserRepository {
 
     }
 
+    public void delete ( String email ) {
+
+        repository.delete(repository.findByEmail(email));
+
+    }
+
     public User findByEmail ( String email ) {
 
         UserEntity entity = repository.findByEmail(email);

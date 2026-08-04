@@ -35,7 +35,7 @@ public class User {
 
     public void changeName ( String name ) {
 
-        if (name == null || name.isBlank() || name.getClass().getSimpleName() != String.class.getSimpleName()) {
+        if (name == null || name.isBlank() || name.length() < 5) {
             throw new InvalidNameException(name);
         }
 
