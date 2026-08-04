@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import com.api.ecommerce.core.application.usecase.CreateUserUseCase;
 import com.api.ecommerce.core.application.usecase.DeleteUserUseCase;
 import com.api.ecommerce.core.application.usecase.GetUserByEmailUseCase;
+import com.api.ecommerce.core.application.usecase.UpdateUserUseCase;
 import com.api.ecommerce.core.domain.repository.UserRepository;
 import com.api.ecommerce.infra.persistence.repository.JpaUserRepositoryAdapter;
 import com.api.ecommerce.infra.persistence.repository.SpringDataUserRepository;
@@ -24,6 +25,13 @@ public class BeanConfiguration {
     public GetUserByEmailUseCase getUserByEmailUseCase ( UserRepository repository ) {
 
         return new GetUserByEmailUseCase(repository);
+
+    }
+
+    @Bean
+    public UpdateUserUseCase updateUserUseCase ( UserRepository repository ) {
+
+        return new UpdateUserUseCase(repository);
 
     }
 

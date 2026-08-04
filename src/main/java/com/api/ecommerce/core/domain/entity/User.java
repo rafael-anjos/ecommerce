@@ -52,6 +52,14 @@ public class User {
         this.email = email;
 
     }
+
+    public void update ( String name, String email ) {
+
+        changeName(name);
+
+        changeEmail(email);
+
+    }
     
     public static User restore ( UUID id, String name, String email ) {
 
