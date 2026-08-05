@@ -12,6 +12,7 @@ import com.api.ecommerce.core.domain.exception.EmailAlreadyExistsException;
 import com.api.ecommerce.core.domain.exception.EmailNotFoundException;
 import com.api.ecommerce.core.domain.exception.InvalidEmailException;
 import com.api.ecommerce.core.domain.exception.InvalidNameException;
+import com.api.ecommerce.core.domain.exception.InvalidPasswordException;
 import com.api.ecommerce.core.domain.exception.UserNotFoundException;
 
 @RestControllerAdvice
@@ -21,6 +22,13 @@ public class GlobalHandlerException {
     public ResponseEntity<ErrorResponse> handleEmailAlreadyExists ( EmailAlreadyExistsException ex ) {
 
         return buildResponse(HttpStatus.CONFLICT, ex.getMessage());
+
+    }
+
+    @ExceptionHandler ( InvalidPasswordException.class )
+    public ResponseEntity<ErrorResponse> handleInvalidPassword ( InvalidPasswordException ex ) {
+
+        return buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
 
     }
 

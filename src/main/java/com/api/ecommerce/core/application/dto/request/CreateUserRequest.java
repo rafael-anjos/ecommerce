@@ -1,9 +1,11 @@
 package com.api.ecommerce.core.application.dto.request;
 
-public record UserRequest (
+public record CreateUserRequest (
 
     String name,
 
-    String email
+    String email,
+
+    String password
     
 ) {}

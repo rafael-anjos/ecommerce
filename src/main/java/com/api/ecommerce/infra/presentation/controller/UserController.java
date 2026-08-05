@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.ecommerce.core.application.dto.request.UserRequest;
+import com.api.ecommerce.core.application.dto.request.CreateUserRequest;
+import com.api.ecommerce.core.application.dto.request.UpdateUserRequest;
 import com.api.ecommerce.core.application.dto.response.GetUserResponse;
 import com.api.ecommerce.core.application.usecase.CreateUserUseCase;
 import com.api.ecommerce.core.application.usecase.DeleteUserUseCase;
@@ -42,7 +43,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> create ( @RequestBody UserRequest request) {
+    public ResponseEntity<Void> create ( @RequestBody CreateUserRequest request) {
 
         create.execute(request);
 
@@ -58,7 +59,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update ( @PathVariable UUID id, @RequestBody UserRequest request ) {
+    public ResponseEntity<Void> update ( @PathVariable UUID id, @RequestBody UpdateUserRequest request ) {
         
         update.execute(id, request);
 

@@ -8,7 +8,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.api.ecommerce.core.domain.entity.User;
-import com.api.ecommerce.core.domain.exception.UserNotFoundException;
 
 public class JpaUserRepositoryAdapter implements UserRepository {
 
