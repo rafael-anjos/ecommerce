@@ -5,10 +5,10 @@ import com.api.ecommerce.core.domain.entity.User;
 import com.api.ecommerce.core.domain.exception.EmailAlreadyExistsException;
 import com.api.ecommerce.core.domain.repository.UserRepository;
 import com.api.ecommerce.core.domain.security.PasswordHasher;
-import com.api.ecommerce.core.domain.valueobject.Email;
-import com.api.ecommerce.core.domain.valueobject.Name;
-import com.api.ecommerce.core.domain.valueobject.Password;
-import com.api.ecommerce.core.domain.valueobject.PasswordHash;
+import com.api.ecommerce.core.domain.valueobject.user.Email;
+import com.api.ecommerce.core.domain.valueobject.user.Name;
+import com.api.ecommerce.core.domain.valueobject.user.Password;
+import com.api.ecommerce.core.domain.valueobject.user.PasswordHash;
 
 public class CreateUserUseCase {
     

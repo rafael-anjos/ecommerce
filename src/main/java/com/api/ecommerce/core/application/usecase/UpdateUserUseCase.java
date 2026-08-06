@@ -6,8 +6,8 @@ import com.api.ecommerce.core.application.dto.request.UpdateUserRequest;
 import com.api.ecommerce.core.domain.entity.User;
 import com.api.ecommerce.core.domain.exception.UserNotFoundException;
 import com.api.ecommerce.core.domain.repository.UserRepository;
-import com.api.ecommerce.core.domain.valueobject.Email;
-import com.api.ecommerce.core.domain.valueobject.Name;
+import com.api.ecommerce.core.domain.valueobject.user.Email;
+import com.api.ecommerce.core.domain.valueobject.user.Name;
 
 public class UpdateUserUseCase {
     

@@ -4,9 +4,9 @@ import com.api.ecommerce.core.application.dto.response.GetUserResponse;
 import com.api.ecommerce.core.domain.entity.User;
 import com.api.ecommerce.core.domain.exception.EmailNotFoundException;
 import com.api.ecommerce.core.domain.repository.UserRepository;
-import com.api.ecommerce.core.domain.valueobject.UserId;
-import com.api.ecommerce.core.domain.valueobject.Email;
-import com.api.ecommerce.core.domain.valueobject.Name;
+import com.api.ecommerce.core.domain.valueobject.user.Email;
+import com.api.ecommerce.core.domain.valueobject.user.Name;
+import com.api.ecommerce.core.domain.valueobject.user.UserId;
 
 public class GetUserByEmailUseCase {
 

@@ -13,7 +13,7 @@ import com.api.ecommerce.core.domain.repository.UserRepository;
 import com.api.ecommerce.core.domain.security.PasswordHasher;
 import com.api.ecommerce.infra.persistence.repository.JpaUserRepositoryAdapter;
 import com.api.ecommerce.infra.persistence.repository.SpringDataUserRepository;
-import com.api.ecommerce.infra.persistence.security.ArgonPasswordHasher;
+import com.api.ecommerce.infra.persistence.security.password.ArgonPasswordHasher;
 
 @Configuration
 public class BeanConfiguration {

@@ -1,10 +1,10 @@
 package com.api.ecommerce.infra.persistence.mapper;
 
 import com.api.ecommerce.core.domain.entity.User;
-import com.api.ecommerce.core.domain.valueobject.Email;
-import com.api.ecommerce.core.domain.valueobject.Name;
-import com.api.ecommerce.core.domain.valueobject.PasswordHash;
-import com.api.ecommerce.core.domain.valueobject.UserId;
+import com.api.ecommerce.core.domain.valueobject.user.Email;
+import com.api.ecommerce.core.domain.valueobject.user.Name;
+import com.api.ecommerce.core.domain.valueobject.user.PasswordHash;
+import com.api.ecommerce.core.domain.valueobject.user.UserId;
 import com.api.ecommerce.infra.persistence.entity.UserEntity;
 
 public class UserMapper {

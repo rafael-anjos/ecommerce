@@ -1,4 +1,4 @@
-package com.api.ecommerce.core.domain.valueobject;
+package com.api.ecommerce.core.domain.valueobject.user;
 
 import java.util.UUID;
 

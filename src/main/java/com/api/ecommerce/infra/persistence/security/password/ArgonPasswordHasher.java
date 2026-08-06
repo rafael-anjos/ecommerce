@@ -1,4 +1,4 @@
-package com.api.ecommerce.infra.persistence.security;
+package com.api.ecommerce.infra.persistence.security.password;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
