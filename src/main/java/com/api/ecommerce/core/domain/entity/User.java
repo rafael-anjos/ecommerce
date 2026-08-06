@@ -1,112 +1,57 @@
 package com.api.ecommerce.core.domain.entity;
 
-import java.util.UUID;
-
-import com.api.ecommerce.core.domain.exception.InvalidEmailException;
-import com.api.ecommerce.core.domain.exception.InvalidNameException;
-import com.api.ecommerce.core.domain.exception.InvalidPasswordException;
+import com.api.ecommerce.core.domain.valueobject.Email;
+import com.api.ecommerce.core.domain.valueobject.Name;
+import com.api.ecommerce.core.domain.valueobject.PasswordHash;
+import com.api.ecommerce.core.domain.valueobject.UserId;
 
 public class User {
     
-    private UUID id;
+    private final UserId id;
 
-    private String name;
+    private Name name;
 
-    private String email;
+    private Email email;
 
-    private String password;
+    private PasswordHash password;
 
     // New user
-    public User ( String name, String email, String password ) {
-        this.id = UUID.randomUUID();
-        changeName(name);
-        changeEmail(email);
-        validatePassword(password);
+    public User ( Name name, Email email, PasswordHash password ) {
+        this.id = UserId.generate();
+        this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
     // User exists ( rebuilding )
-    private User ( UUID id, String name, String email, String password ) {
+    private User ( UserId id, Name name, Email email, PasswordHash password ) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    public UUID getId () { return id; }
+    public UserId getId () { return id; }
 
-    public String getName () { return name; }
+    public Name getName () { return name; }
 
-    public String getEmail () { return email; }
+    public Email getEmail () { return email; }
 
-    public String getPassword () { return password; }
+    public PasswordHash getPassword () { return password; }
 
-    public void changeName ( String name ) {
-
-        if (name == null || name.isBlank()) {
-            throw new InvalidNameException(name);
-        }
+    public void changeName ( Name name ) {
 
         this.name = name;
 
     }
 
-    public void changeEmail ( String email ) {
-
-        if (email == null || email.isBlank() || !email.contains("@")) {
-            throw new InvalidEmailException(email);
-        }
+    public void changeEmail ( Email email ) {
 
         this.email = email;
 
     }
-
-    public void validatePassword ( String password ) {
-
-        if (password == null || password.isBlank()) {
-            throw new InvalidPasswordException(
-            "Password cannot be empty.");
-        }
-
-        if (password.length() < 8) {
-            throw new InvalidPasswordException(
-            "Password must contain at least 8 characters.");
-        }
-
-        if (!password.matches(".*[A-Z].*")) {
-            throw new InvalidPasswordException(
-            "Password must contain an uppercase letter.");
-        }
-
-        if (!password.matches(".*[a-z].*")) {
-            throw new InvalidPasswordException(
-            "Password must contain an lowercase letter.");
-        }
-
-        if (!password.matches(".*\\d.*")) {
-        throw new InvalidPasswordException(
-            "Password must contain a number."
-        );
-        }
-
-        if (!password.matches(".*[!@#$%^&*()].*")) {
-        throw new InvalidPasswordException(
-            "Password must contain a special character."
-        );
-        }
-
-        this.password = password;
-
-    }
-
-    public void update ( String name, String email ) {
-
-        changeName(name);
-
-        changeEmail(email);
-
-    }
     
-    public static User restore ( UUID id, String name, String email, String password ) {
+    public static User restore ( UserId id, Name name, Email email, PasswordHash password ) {
 
         return new User(id, name, email, password);
         

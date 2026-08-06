@@ -4,7 +4,7 @@ public class InvalidNameException extends RuntimeException {
     
     public InvalidNameException ( String name ) {
 
-        super("The name %s is invalid.".formatted(name));
+        super("Name %s is invalid.".formatted(name));
         
     }
 }

@@ -11,6 +11,7 @@ import com.api.ecommerce.core.application.dto.response.ErrorResponse;
 import com.api.ecommerce.core.domain.exception.EmailAlreadyExistsException;
 import com.api.ecommerce.core.domain.exception.EmailNotFoundException;
 import com.api.ecommerce.core.domain.exception.InvalidEmailException;
+import com.api.ecommerce.core.domain.exception.InvalidIdException;
 import com.api.ecommerce.core.domain.exception.InvalidNameException;
 import com.api.ecommerce.core.domain.exception.InvalidPasswordException;
 import com.api.ecommerce.core.domain.exception.UserNotFoundException;
@@ -43,6 +44,13 @@ public class GlobalHandlerException {
     public ResponseEntity<ErrorResponse> handleUserNotFound ( UserNotFoundException ex ) {
 
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+
+    }
+
+    @ExceptionHandler ( InvalidIdException.class )
+    public ResponseEntity<ErrorResponse> handleInvalidId ( InvalidIdException ex ) {
+
+        return buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
 
     }
 

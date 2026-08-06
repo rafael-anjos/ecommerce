@@ -5,6 +5,10 @@ import com.api.ecommerce.core.domain.entity.User;
 import com.api.ecommerce.core.domain.exception.EmailAlreadyExistsException;
 import com.api.ecommerce.core.domain.repository.UserRepository;
 import com.api.ecommerce.core.domain.security.PasswordHasher;
+import com.api.ecommerce.core.domain.valueobject.Email;
+import com.api.ecommerce.core.domain.valueobject.Name;
+import com.api.ecommerce.core.domain.valueobject.Password;
+import com.api.ecommerce.core.domain.valueobject.PasswordHash;
 
 public class CreateUserUseCase {
     
@@ -22,13 +26,19 @@ public class CreateUserUseCase {
             throw new EmailAlreadyExistsException(request.email());
         }
 
-        String hashedPassword = passwordHasher.hash(request.password());
+        Name name = Name.of(request.name());
+
+        Email email = Email.of(request.email());
+
+        Password password = Password.of(request.password());
+
+        PasswordHash hashedPassword = PasswordHash.of(passwordHasher.hash(password.value()));
 
         User user = new User (
 
-            request.name().toUpperCase(), 
+            name, 
 
-            request.email(),
+            email,
 
             hashedPassword
             
