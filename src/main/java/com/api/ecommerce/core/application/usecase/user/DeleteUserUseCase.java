@@ -1,4 +1,4 @@
-package com.api.ecommerce.core.application.usecase;
+package com.api.ecommerce.core.application.usecase.user;
 
 import com.api.ecommerce.core.domain.exception.EmailNotFoundException;
 import com.api.ecommerce.core.domain.repository.UserRepository;

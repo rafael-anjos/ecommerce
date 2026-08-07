@@ -4,15 +4,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
 
-import com.api.ecommerce.core.application.usecase.CreateUserUseCase;
-import com.api.ecommerce.core.application.usecase.DeleteUserUseCase;
-import com.api.ecommerce.core.application.usecase.GetUserByEmailUseCase;
-import com.api.ecommerce.core.application.usecase.UpdateUserUseCase;
+import com.api.ecommerce.core.application.service.JwtTokenService;
+import com.api.ecommerce.core.application.usecase.auth.LoginUseCase;
+import com.api.ecommerce.core.application.usecase.user.CreateUserUseCase;
+import com.api.ecommerce.core.application.usecase.user.DeleteUserUseCase;
+import com.api.ecommerce.core.application.usecase.user.GetUserByEmailUseCase;
+import com.api.ecommerce.core.application.usecase.user.UpdateUserUseCase;
 import com.api.ecommerce.core.domain.repository.UserRepository;
 import com.api.ecommerce.core.domain.security.PasswordHasher;
 import com.api.ecommerce.infra.persistence.repository.JpaUserRepositoryAdapter;
 import com.api.ecommerce.infra.persistence.repository.SpringDataUserRepository;
+import com.api.ecommerce.infra.persistence.security.jwt.JwtTokenServiceImpl;
 import com.api.ecommerce.infra.persistence.security.password.ArgonPasswordHasher;
 
 @Configuration
@@ -43,6 +47,20 @@ public class BeanConfiguration {
     public DeleteUserUseCase deleteUserUseCase ( UserRepository repository ) {
 
         return new DeleteUserUseCase(repository);
+
+    }
+
+    @Bean
+    public LoginUseCase loginUseCase ( UserRepository repository, PasswordHasher passwordHasher, JwtTokenService jwtTokenService ) {
+
+        return new LoginUseCase(repository, passwordHasher, jwtTokenService);
+
+    }
+
+    @Bean
+    public JwtTokenService jwtTokenService ( JwtEncoder jwtEncoder ) {
+
+        return new JwtTokenServiceImpl(jwtEncoder);
 
     }
 

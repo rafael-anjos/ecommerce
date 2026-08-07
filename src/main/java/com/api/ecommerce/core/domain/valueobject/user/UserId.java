@@ -35,5 +35,11 @@ public final class UserId {
         return value;
 
     }
+
+    public String toString () {
+
+        return value.toString();
+        
+    }
     
 }

@@ -1,8 +1,8 @@
-package com.api.ecommerce.core.application.usecase;
+package com.api.ecommerce.core.application.usecase.user;
 
 import java.util.UUID;
 
-import com.api.ecommerce.core.application.dto.request.UpdateUserRequest;
+import com.api.ecommerce.core.application.dto.request.user.UpdateUserRequest;
 import com.api.ecommerce.core.domain.entity.User;
 import com.api.ecommerce.core.domain.exception.UserNotFoundException;
 import com.api.ecommerce.core.domain.repository.UserRepository;

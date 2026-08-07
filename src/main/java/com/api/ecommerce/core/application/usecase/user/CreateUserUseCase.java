@@ -1,6 +1,6 @@
-package com.api.ecommerce.core.application.usecase;
+package com.api.ecommerce.core.application.usecase.user;
 
-import com.api.ecommerce.core.application.dto.request.CreateUserRequest;
+import com.api.ecommerce.core.application.dto.request.user.CreateUserRequest;
 import com.api.ecommerce.core.domain.entity.User;
 import com.api.ecommerce.core.domain.exception.EmailAlreadyExistsException;
 import com.api.ecommerce.core.domain.repository.UserRepository;

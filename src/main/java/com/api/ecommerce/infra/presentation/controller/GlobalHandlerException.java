@@ -7,9 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.api.ecommerce.core.application.dto.response.ErrorResponse;
+import com.api.ecommerce.core.application.dto.response.exception.ErrorResponse;
 import com.api.ecommerce.core.domain.exception.EmailAlreadyExistsException;
 import com.api.ecommerce.core.domain.exception.EmailNotFoundException;
+import com.api.ecommerce.core.domain.exception.InvalidCredentialsException;
 import com.api.ecommerce.core.domain.exception.InvalidEmailException;
 import com.api.ecommerce.core.domain.exception.InvalidIdException;
 import com.api.ecommerce.core.domain.exception.InvalidNameException;
@@ -65,6 +66,13 @@ public class GlobalHandlerException {
     public ResponseEntity<ErrorResponse> handleInvalidEmail ( InvalidEmailException ex ) {
 
         return buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
+
+    }
+
+    @ExceptionHandler ( InvalidCredentialsException.class )
+    public ResponseEntity<ErrorResponse> handleInvalidCredentials ( InvalidCredentialsException ex ) {
+
+        return buildResponse(HttpStatus.UNAUTHORIZED, ex.getMessage());
 
     }
 

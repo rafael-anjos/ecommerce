@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.ecommerce.core.application.dto.request.CreateUserRequest;
-import com.api.ecommerce.core.application.dto.request.UpdateUserRequest;
-import com.api.ecommerce.core.application.dto.response.GetUserResponse;
-import com.api.ecommerce.core.application.usecase.CreateUserUseCase;
-import com.api.ecommerce.core.application.usecase.DeleteUserUseCase;
-import com.api.ecommerce.core.application.usecase.GetUserByEmailUseCase;
-import com.api.ecommerce.core.application.usecase.UpdateUserUseCase;
+import com.api.ecommerce.core.application.dto.request.user.CreateUserRequest;
+import com.api.ecommerce.core.application.dto.request.user.UpdateUserRequest;
+import com.api.ecommerce.core.application.dto.response.user.GetUserResponse;
+import com.api.ecommerce.core.application.usecase.user.CreateUserUseCase;
+import com.api.ecommerce.core.application.usecase.user.DeleteUserUseCase;
+import com.api.ecommerce.core.application.usecase.user.GetUserByEmailUseCase;
+import com.api.ecommerce.core.application.usecase.user.UpdateUserUseCase;
 
 @RestController
 @RequestMapping("/api/user")

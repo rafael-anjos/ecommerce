@@ -1,4 +1,4 @@
-package com.api.ecommerce.core.application.dto.response;
+package com.api.ecommerce.core.application.dto.response.user;
 
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package com.api.ecommerce.core.application.dto.request;
+package com.api.ecommerce.core.application.dto.request.user;
 
 public record CreateUserRequest (
 
