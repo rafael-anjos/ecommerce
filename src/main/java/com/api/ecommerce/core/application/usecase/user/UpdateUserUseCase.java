@@ -7,7 +7,7 @@ import com.api.ecommerce.core.domain.entity.User;
 import com.api.ecommerce.core.domain.exception.UserNotFoundException;
 import com.api.ecommerce.core.domain.repository.UserRepository;
 import com.api.ecommerce.core.domain.valueobject.user.Email;
-import com.api.ecommerce.core.domain.valueobject.user.Name;
+import com.api.ecommerce.core.domain.valueobject.user.UserName;
 
 public class UpdateUserUseCase {
     
@@ -22,7 +22,7 @@ public class UpdateUserUseCase {
         User user = repository.findById(id)
         .orElseThrow(() -> new UserNotFoundException());
 
-        Name name = Name.of(request.name());
+        UserName name = UserName.of(request.name());
 
         Email email = Email.of(request.email());
 

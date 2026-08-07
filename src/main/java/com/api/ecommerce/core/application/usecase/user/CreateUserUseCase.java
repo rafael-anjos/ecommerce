@@ -6,7 +6,7 @@ import com.api.ecommerce.core.domain.exception.EmailAlreadyExistsException;
 import com.api.ecommerce.core.domain.repository.UserRepository;
 import com.api.ecommerce.core.domain.security.PasswordHasher;
 import com.api.ecommerce.core.domain.valueobject.user.Email;
-import com.api.ecommerce.core.domain.valueobject.user.Name;
+import com.api.ecommerce.core.domain.valueobject.user.UserName;
 import com.api.ecommerce.core.domain.valueobject.user.Password;
 import com.api.ecommerce.core.domain.valueobject.user.PasswordHash;
 
@@ -26,7 +26,7 @@ public class CreateUserUseCase {
             throw new EmailAlreadyExistsException(request.email());
         }
 
-        Name name = Name.of(request.name());
+        UserName name = UserName.of(request.name());
 
         Email email = Email.of(request.email());
 

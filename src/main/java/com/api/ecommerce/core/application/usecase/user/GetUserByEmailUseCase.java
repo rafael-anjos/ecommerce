@@ -5,7 +5,7 @@ import com.api.ecommerce.core.domain.entity.User;
 import com.api.ecommerce.core.domain.exception.EmailNotFoundException;
 import com.api.ecommerce.core.domain.repository.UserRepository;
 import com.api.ecommerce.core.domain.valueobject.user.Email;
-import com.api.ecommerce.core.domain.valueobject.user.Name;
+import com.api.ecommerce.core.domain.valueobject.user.UserName;
 import com.api.ecommerce.core.domain.valueobject.user.UserId;
 
 public class GetUserByEmailUseCase {
@@ -26,7 +26,7 @@ public class GetUserByEmailUseCase {
 
         UserId id = UserId.of(user.getId().value());
 
-        Name name = Name.of(user.getName().value());
+        UserName name = UserName.of(user.getName().value());
 
         Email email2 = Email.of(user.getEmail().value());
 

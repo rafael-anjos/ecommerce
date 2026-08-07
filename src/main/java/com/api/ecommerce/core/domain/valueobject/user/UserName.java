@@ -2,11 +2,11 @@ package com.api.ecommerce.core.domain.valueobject.user;
 
 import com.api.ecommerce.core.domain.exception.InvalidNameException;
 
-public final class Name {
+public final class UserName {
 
     private final String value;
 
-    public Name ( String value ) {
+    public UserName ( String value ) {
 
         validate(value);
 
@@ -40,9 +40,9 @@ public final class Name {
 
     }
 
-    public static Name of ( String value ) {
+    public static UserName of ( String value ) {
 
-        return new Name(value);
+        return new UserName(value);
 
     }
 

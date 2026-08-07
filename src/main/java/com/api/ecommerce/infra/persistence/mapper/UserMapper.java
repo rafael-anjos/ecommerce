@@ -2,7 +2,7 @@ package com.api.ecommerce.infra.persistence.mapper;
 
 import com.api.ecommerce.core.domain.entity.User;
 import com.api.ecommerce.core.domain.valueobject.user.Email;
-import com.api.ecommerce.core.domain.valueobject.user.Name;
+import com.api.ecommerce.core.domain.valueobject.user.UserName;
 import com.api.ecommerce.core.domain.valueobject.user.PasswordHash;
 import com.api.ecommerce.core.domain.valueobject.user.UserId;
 import com.api.ecommerce.infra.persistence.entity.UserEntity;
@@ -24,7 +24,7 @@ public class UserMapper {
 
         return User.restore(
             UserId.of(entity.getId()), 
-            Name.of(entity.getName()), 
+            UserName.of(entity.getName()), 
             Email.of(entity.getEmail()),
             PasswordHash.of(entity.getPassword())
         );
