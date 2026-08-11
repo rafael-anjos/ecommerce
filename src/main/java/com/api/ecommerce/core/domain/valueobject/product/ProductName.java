@@ -28,10 +28,6 @@ public class ProductName {
             throw new InvalidNameException(value);
         }
 
-        if (!value.matches("^[A-Za-zÀ-ÖØ-öø-ÿ ]+$")) {
-            throw new InvalidNameException(value);
-        }
-
     }
 
     private String normalize ( String value ) {

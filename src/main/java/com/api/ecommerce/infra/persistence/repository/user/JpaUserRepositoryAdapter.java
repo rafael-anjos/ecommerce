@@ -1,4 +1,4 @@
-package com.api.ecommerce.infra.persistence.repository;
+package com.api.ecommerce.infra.persistence.repository.user;
 
 import com.api.ecommerce.core.domain.repository.UserRepository;
 import com.api.ecommerce.infra.persistence.entity.UserEntity;

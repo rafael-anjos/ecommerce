@@ -14,13 +14,13 @@ import com.api.ecommerce.core.application.usecase.user.GetUserByEmailUseCase;
 import com.api.ecommerce.core.application.usecase.user.UpdateUserUseCase;
 import com.api.ecommerce.core.domain.repository.UserRepository;
 import com.api.ecommerce.core.domain.security.PasswordHasher;
-import com.api.ecommerce.infra.persistence.repository.JpaUserRepositoryAdapter;
-import com.api.ecommerce.infra.persistence.repository.SpringDataUserRepository;
+import com.api.ecommerce.infra.persistence.repository.user.JpaUserRepositoryAdapter;
+import com.api.ecommerce.infra.persistence.repository.user.SpringDataUserRepository;
 import com.api.ecommerce.infra.persistence.security.jwt.JwtTokenServiceImpl;
 import com.api.ecommerce.infra.persistence.security.password.ArgonPasswordHasher;
 
 @Configuration
-public class BeanConfiguration {
+public class UserBeanConfiguration {
     
     @Bean
     public CreateUserUseCase createUserUseCase ( UserRepository repository, PasswordHasher hasher ) {

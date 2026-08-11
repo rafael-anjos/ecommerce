@@ -1,4 +1,4 @@
-package com.api.ecommerce.infra.persistence.repository;
+package com.api.ecommerce.infra.persistence.repository.user;
 
 import java.util.UUID;
 
