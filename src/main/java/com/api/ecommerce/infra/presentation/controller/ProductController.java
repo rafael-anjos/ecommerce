@@ -84,8 +84,8 @@ public class ProductController {
 
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<Void> addStock ( @PathVariable UUID id, @RequestBody int value ) {
+    @PatchMapping("/{id}/add")
+    public ResponseEntity<Void> addStockProduct ( @PathVariable UUID id, @RequestBody int value ) {
 
         addStock.execute(id, value);
 
@@ -93,8 +93,8 @@ public class ProductController {
 
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<Void> removeStock ( @PathVariable UUID id, @RequestBody int value ) {
+    @PatchMapping("/{id}/remove")
+    public ResponseEntity<Void> removeStockProduct ( @PathVariable UUID id, @RequestBody int value ) {
 
         removeStock.execute(id, value);
 
