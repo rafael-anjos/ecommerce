@@ -23,10 +23,13 @@ public class UpdateProductUseCase {
         .orElseThrow(() -> new ProductNotFoundException("Product not found."));
 
         ProductName name = ProductName.of(request.name());
+
         Money price = Money.of(request.price());
 
         product.changeName(name);
+
         product.changeDescription(request.description());
+        
         product.changePrice(price);
 
         repository.save(product);

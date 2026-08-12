@@ -39,7 +39,7 @@ public class Cart {
 
     public UserId getUserId () { return userId; }
 
-    public List<CartItem> getItems () { return Collections.unmodifiableList(items); }
+    public List<CartItem> getItems () { return items; }
 
     public LocalDateTime getCreatedAt () { return createdAt; }
 

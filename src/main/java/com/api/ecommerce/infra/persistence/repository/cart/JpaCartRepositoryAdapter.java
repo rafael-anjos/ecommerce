@@ -17,9 +17,11 @@ public class JpaCartRepositoryAdapter implements CartRepository {
     public Cart save ( Cart cart ) {
 
         CartItemMapper itemMapper = new CartItemMapper();
+
         CartMapper mapper = new CartMapper(itemMapper);
 
         CartEntity entity = mapper.toEntity(cart);
+        
         CartEntity saved = repository.save(entity);
 
         return mapper.toDomain(saved);
