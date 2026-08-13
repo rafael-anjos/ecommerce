@@ -4,7 +4,7 @@ import com.api.ecommerce.core.application.dto.request.auth.LoginRequest;
 import com.api.ecommerce.core.application.service.JwtTokenService;
 import com.api.ecommerce.core.domain.entity.User;
 import com.api.ecommerce.core.domain.exception.InvalidCredentialsException;
-import com.api.ecommerce.core.domain.exception.UserNotFoundException;
+import com.api.ecommerce.core.domain.exception.ResourceNotFoundException;
 import com.api.ecommerce.core.domain.repository.UserRepository;
 import com.api.ecommerce.core.domain.security.PasswordHasher;
 
@@ -29,7 +29,7 @@ public class LoginUseCase {
         User user = repository.findByEmail(request.email());
 
         if (user == null) {
-            throw new UserNotFoundException();
+            throw new ResourceNotFoundException();
         }
 
         boolean passwordCorrect = passwordHasher.matches(

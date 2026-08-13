@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.api.ecommerce.core.application.dto.response.exception.ErrorResponse;
+import com.api.ecommerce.core.domain.exception.CartAlreadyExistsException;
 import com.api.ecommerce.core.domain.exception.EmailAlreadyExistsException;
 import com.api.ecommerce.core.domain.exception.EmailNotFoundException;
 import com.api.ecommerce.core.domain.exception.InvalidCredentialsException;
@@ -16,13 +17,20 @@ import com.api.ecommerce.core.domain.exception.InvalidIdException;
 import com.api.ecommerce.core.domain.exception.InvalidNameException;
 import com.api.ecommerce.core.domain.exception.InvalidPasswordException;
 import com.api.ecommerce.core.domain.exception.ProductNotFoundException;
-import com.api.ecommerce.core.domain.exception.UserNotFoundException;
+import com.api.ecommerce.core.domain.exception.ResourceNotFoundException;
 
 @RestControllerAdvice
 public class GlobalHandlerException {
     
     @ExceptionHandler ( EmailAlreadyExistsException.class )
     public ResponseEntity<ErrorResponse> handleEmailAlreadyExists ( EmailAlreadyExistsException ex ) {
+
+        return buildResponse(HttpStatus.CONFLICT, ex.getMessage());
+
+    }
+
+    @ExceptionHandler ( CartAlreadyExistsException.class )
+    public ResponseEntity<ErrorResponse> handleCartExists ( CartAlreadyExistsException ex ) {
 
         return buildResponse(HttpStatus.CONFLICT, ex.getMessage());
 
@@ -49,8 +57,8 @@ public class GlobalHandlerException {
 
     }
 
-    @ExceptionHandler ( UserNotFoundException.class )
-    public ResponseEntity<ErrorResponse> handleUserNotFound ( UserNotFoundException ex ) {
+    @ExceptionHandler ( ResourceNotFoundException.class )
+    public ResponseEntity<ErrorResponse> handleUserNotFound ( ResourceNotFoundException ex ) {
 
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());
 

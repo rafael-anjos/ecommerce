@@ -30,9 +30,9 @@ public class CartItem {
 
     public Quantity getQuantity () { return quantity; }
 
-    public void changeQuantity ( Quantity quantity ) {
-        
-        this.quantity = quantity;
+    public void increaseQuantity ( Quantity quantity ) {
+
+        this.quantity = this.quantity.increase(quantity.value());
 
     }
 

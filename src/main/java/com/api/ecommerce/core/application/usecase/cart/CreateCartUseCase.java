@@ -1,29 +1,25 @@
 package com.api.ecommerce.core.application.usecase.cart;
 
-import java.util.UUID;
-
 import com.api.ecommerce.core.domain.entity.Cart;
-import com.api.ecommerce.core.domain.entity.User;
-import com.api.ecommerce.core.domain.exception.UserNotFoundException;
+import com.api.ecommerce.core.domain.exception.CartAlreadyExistsException;
 import com.api.ecommerce.core.domain.repository.CartRepository;
-import com.api.ecommerce.core.domain.repository.UserRepository;
+import com.api.ecommerce.core.domain.valueobject.user.UserId;
 
 public class CreateCartUseCase {
     
     private final CartRepository repository;
-    private final UserRepository userRepository;
 
-    public CreateCartUseCase ( CartRepository repository, UserRepository userRepository ) {
+    public CreateCartUseCase ( CartRepository repository ) {
         this.repository = repository;
-        this.userRepository = userRepository;
     }
 
-    public void execute ( UUID userId ) {
+    public void execute ( UserId userId ) {
 
-        User user = userRepository.findById(userId)
-        .orElseThrow(() -> new UserNotFoundException());
+        if (repository.existsByUserId(userId)) {
+            throw new CartAlreadyExistsException("Cart for this user already exists.");
+        }
 
-        Cart cart = new Cart(user.getId());
+        Cart cart = new Cart(userId);
 
         repository.save(cart);
 

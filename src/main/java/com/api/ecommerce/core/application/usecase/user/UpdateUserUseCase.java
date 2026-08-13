@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import com.api.ecommerce.core.application.dto.request.user.UpdateUserRequest;
 import com.api.ecommerce.core.domain.entity.User;
-import com.api.ecommerce.core.domain.exception.UserNotFoundException;
+import com.api.ecommerce.core.domain.exception.ResourceNotFoundException;
 import com.api.ecommerce.core.domain.repository.UserRepository;
 import com.api.ecommerce.core.domain.valueobject.user.Email;
 import com.api.ecommerce.core.domain.valueobject.user.UserName;
@@ -20,7 +20,7 @@ public class UpdateUserUseCase {
     public void execute ( UUID id, UpdateUserRequest request ) {
 
         User user = repository.findById(id)
-        .orElseThrow(() -> new UserNotFoundException());
+        .orElseThrow(() -> new ResourceNotFoundException());
 
         UserName name = UserName.of(request.name());
 

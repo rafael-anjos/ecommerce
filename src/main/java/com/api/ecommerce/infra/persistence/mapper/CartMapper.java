@@ -22,7 +22,8 @@ public class CartMapper {
         CartEntity entity = new CartEntity(
             cart.getId().value(), 
             cart.getUserId().value(), 
-            null, 
+            null,
+            cart.getStatus(), 
             cart.getCreatedAt(), 
             cart.getUpdatedAt()
         );
@@ -47,7 +48,8 @@ public class CartMapper {
         return Cart.restore(
             CartId.of(entity.getId()), 
             UserId.of(entity.getUserId()), 
-            items, 
+            items,
+            entity.getStatus(), 
             entity.getCreatedAt(), 
             entity.getUpdatedAt()
         );
