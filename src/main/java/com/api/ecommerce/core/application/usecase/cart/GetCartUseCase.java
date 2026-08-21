@@ -25,7 +25,9 @@ public class GetCartUseCase {
 
             cart.getUserId().value(), 
 
-            cart.getItems().size(), 
+            cart.getItems().size(),
+            
+            cart.getValue().value(),
 
             cart.getItems(), 
 

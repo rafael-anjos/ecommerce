@@ -9,7 +9,9 @@ import com.api.ecommerce.core.domain.exception.ResourceNotFoundException;
 import com.api.ecommerce.core.domain.repository.CartRepository;
 import com.api.ecommerce.core.domain.repository.ProductRepository;
 import com.api.ecommerce.core.domain.valueobject.cart.CartId;
+import com.api.ecommerce.core.domain.valueobject.product.Money;
 import com.api.ecommerce.core.domain.valueobject.product.ProductId;
+import com.api.ecommerce.core.domain.valueobject.product.ProductName;
 import com.api.ecommerce.core.domain.valueobject.product.Quantity;
 
 public class AddItemToCartUseCase {
@@ -30,9 +32,15 @@ public class AddItemToCartUseCase {
         Product product = productRepository.findById(input.productId())
         .orElseThrow(() -> new ProductNotFoundException("Product not found."));
 
+        if (input.quantity() > product.getQuantity().value()) {
+            throw new IllegalArgumentException("Quantity must be less or equal then product stock.");
+        }
+
         CartItem item = new CartItem(
             ProductId.of(product.getId().value()), 
-            Quantity.of(input.quantity())
+            ProductName.of(product.getName().value()),
+            Quantity.of(input.quantity()),
+            Money.of(product.getPrice().value())
         );
 
         cart.addItem(item);

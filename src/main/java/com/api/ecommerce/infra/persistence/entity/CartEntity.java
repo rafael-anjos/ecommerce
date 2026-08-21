@@ -1,5 +1,6 @@
 package com.api.ecommerce.infra.persistence.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,8 @@ public class CartEntity {
 
     @OneToMany ( mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true )
     private List<CartItemEntity> items = new ArrayList<>();
+
+    private BigDecimal valueCart;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

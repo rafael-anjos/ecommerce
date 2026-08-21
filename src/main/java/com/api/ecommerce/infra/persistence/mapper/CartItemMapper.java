@@ -2,7 +2,9 @@ package com.api.ecommerce.infra.persistence.mapper;
 
 import com.api.ecommerce.core.domain.entity.CartItem;
 import com.api.ecommerce.core.domain.valueobject.cart_item.CartItemId;
+import com.api.ecommerce.core.domain.valueobject.product.Money;
 import com.api.ecommerce.core.domain.valueobject.product.ProductId;
+import com.api.ecommerce.core.domain.valueobject.product.ProductName;
 import com.api.ecommerce.core.domain.valueobject.product.Quantity;
 import com.api.ecommerce.infra.persistence.entity.CartItemEntity;
 
@@ -12,7 +14,9 @@ public class CartItemMapper {
 
         return new CartItemEntity(
             cartItem.getId().value(), 
-            cartItem.getProductId().value(), 
+            cartItem.getProductId().value(),
+            cartItem.getProductName().value(),
+            cartItem.getValueCartItem().value(), 
             cartItem.getQuantity().value()
         );
 
@@ -22,8 +26,10 @@ public class CartItemMapper {
 
         return CartItem.restore(
             CartItemId.of(entity.getId()),
-            ProductId.of(entity.getProductId()), 
-            Quantity.of(entity.getQuantity())
+            ProductId.of(entity.getProductId()),
+            ProductName.of(entity.getProductName()), 
+            Quantity.of(entity.getQuantity()),
+            Money.of(entity.getValueCartItem())
         );
 
     }

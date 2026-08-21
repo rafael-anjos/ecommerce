@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.ecommerce.core.application.dto.request.cart.AddItemInput;
+import com.api.ecommerce.core.application.dto.request.cart.RemoveItemInput;
 import com.api.ecommerce.core.application.dto.response.cart.GetCartResponse;
 import com.api.ecommerce.core.application.usecase.cart.AddItemToCartUseCase;
 import com.api.ecommerce.core.application.usecase.cart.CreateCartUseCase;
 import com.api.ecommerce.core.application.usecase.cart.GetCartUseCase;
+import com.api.ecommerce.core.application.usecase.cart.RemoveItemToCartUseCase;
 import com.api.ecommerce.core.domain.valueobject.user.UserId;
 
 @RestController
@@ -25,14 +27,17 @@ public class CartController {
     private final CreateCartUseCase create;
     private final GetCartUseCase get;
     private final AddItemToCartUseCase addItem;
+    private final RemoveItemToCartUseCase removeItem;
 
     public CartController ( 
         CreateCartUseCase create, 
         GetCartUseCase get,
-        AddItemToCartUseCase addItem ) {
+        AddItemToCartUseCase addItem,
+        RemoveItemToCartUseCase removeItem ) {
         this.create = create;
         this.get = get;
         this.addItem = addItem;
+        this.removeItem = removeItem;
     }
 
     @PostMapping("/{userId}")
@@ -55,6 +60,15 @@ public class CartController {
     public ResponseEntity<Void> addItem ( @RequestBody AddItemInput input ) {
 
         addItem.execute(input);
+
+        return ResponseEntity.ok().build();
+
+    }
+
+    @PostMapping("/removeItem")
+    public ResponseEntity<Void> removeItem ( @RequestBody RemoveItemInput input ) {
+
+        removeItem.execute(input);
 
         return ResponseEntity.ok().build();
 

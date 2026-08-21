@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import com.api.ecommerce.core.application.usecase.cart.AddItemToCartUseCase;
 import com.api.ecommerce.core.application.usecase.cart.CreateCartUseCase;
 import com.api.ecommerce.core.application.usecase.cart.GetCartUseCase;
+import com.api.ecommerce.core.application.usecase.cart.RemoveItemToCartUseCase;
 import com.api.ecommerce.core.domain.repository.CartRepository;
 import com.api.ecommerce.core.domain.repository.ProductRepository;
 import com.api.ecommerce.infra.persistence.mapper.CartItemMapper;
@@ -55,6 +56,13 @@ public class CartBeanConfiguration {
     public AddItemToCartUseCase addItemToCart ( CartRepository repository, ProductRepository productRepository ) {
 
         return new AddItemToCartUseCase(repository, productRepository);
+
+    }
+
+    @Bean
+    public RemoveItemToCartUseCase removeItemToCart ( CartRepository repository ) {
+
+        return new RemoveItemToCartUseCase(repository);
 
     }
 

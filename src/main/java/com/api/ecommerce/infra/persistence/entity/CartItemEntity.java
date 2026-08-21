@@ -1,5 +1,6 @@
 package com.api.ecommerce.infra.persistence.entity;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -28,11 +29,17 @@ public class CartItemEntity {
 
     private UUID productId;
 
+    private String productName;
+
+    private BigDecimal valueCartItem;
+
     private int quantity;
 
-    public CartItemEntity ( UUID id, UUID productId, int quantity ) {
+    public CartItemEntity ( UUID id, UUID productId, String productName, BigDecimal valueCartItem, int quantity ) {
         this.id = id;
         this.productId = productId;
+        this.productName = productName;
+        this.valueCartItem = valueCartItem;
         this.quantity = quantity;
     }
     

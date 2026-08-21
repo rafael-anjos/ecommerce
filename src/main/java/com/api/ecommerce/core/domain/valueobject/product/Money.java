@@ -32,6 +32,18 @@ public class Money {
 
     }
 
+    public Money add ( Money other ) {
+
+        return new Money(this.value.add(other.value));
+
+    }
+
+    public static Money zero () {
+
+        return new Money(BigDecimal.ZERO);
+        
+    }
+
     public BigDecimal value () {
 
         return value;

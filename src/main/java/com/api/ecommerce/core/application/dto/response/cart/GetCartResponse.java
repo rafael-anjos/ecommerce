@@ -1,5 +1,6 @@
 package com.api.ecommerce.core.application.dto.response.cart;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,6 +14,8 @@ public record GetCartResponse (
     UUID userId,
 
     int itemsQuantity,
+
+    BigDecimal valueCart,
 
     List<CartItem> items,
 

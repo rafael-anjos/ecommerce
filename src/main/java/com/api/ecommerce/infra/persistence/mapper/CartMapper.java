@@ -5,6 +5,7 @@ import java.util.List;
 import com.api.ecommerce.core.domain.entity.Cart;
 import com.api.ecommerce.core.domain.entity.CartItem;
 import com.api.ecommerce.core.domain.valueobject.cart.CartId;
+import com.api.ecommerce.core.domain.valueobject.product.Money;
 import com.api.ecommerce.core.domain.valueobject.user.UserId;
 import com.api.ecommerce.infra.persistence.entity.CartEntity;
 import com.api.ecommerce.infra.persistence.entity.CartItemEntity;
@@ -23,6 +24,7 @@ public class CartMapper {
             cart.getId().value(), 
             cart.getUserId().value(), 
             null,
+            cart.getValue().value(),
             cart.getStatus(), 
             cart.getCreatedAt(), 
             cart.getUpdatedAt()
@@ -49,6 +51,7 @@ public class CartMapper {
             CartId.of(entity.getId()), 
             UserId.of(entity.getUserId()), 
             items,
+            Money.of(entity.getValueCart()),
             entity.getStatus(), 
             entity.getCreatedAt(), 
             entity.getUpdatedAt()
