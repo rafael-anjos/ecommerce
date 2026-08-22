@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import com.api.ecommerce.core.domain.entity.Cart;
 import com.api.ecommerce.core.domain.valueobject.cart.CartId;
+import com.api.ecommerce.core.domain.valueobject.product.ProductId;
 import com.api.ecommerce.core.domain.valueobject.user.UserId;
 
 public interface CartRepository {
@@ -15,5 +16,7 @@ public interface CartRepository {
     Optional<Cart> findActiveByUserId ( UserId userId );
 
     boolean existsByUserId ( UserId userId );
+
+    void removeItem ( CartId cartId, ProductId productId );
     
 }

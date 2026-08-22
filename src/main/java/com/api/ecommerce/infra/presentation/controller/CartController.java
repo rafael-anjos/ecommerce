@@ -15,9 +15,11 @@ import com.api.ecommerce.core.application.dto.request.cart.AddItemInput;
 import com.api.ecommerce.core.application.dto.request.cart.RemoveItemInput;
 import com.api.ecommerce.core.application.dto.response.cart.GetCartResponse;
 import com.api.ecommerce.core.application.usecase.cart.AddItemToCartUseCase;
+import com.api.ecommerce.core.application.usecase.cart.ClearCartUseCase;
 import com.api.ecommerce.core.application.usecase.cart.CreateCartUseCase;
 import com.api.ecommerce.core.application.usecase.cart.GetCartUseCase;
 import com.api.ecommerce.core.application.usecase.cart.RemoveItemToCartUseCase;
+import com.api.ecommerce.core.domain.valueobject.cart.CartId;
 import com.api.ecommerce.core.domain.valueobject.user.UserId;
 
 @RestController
@@ -28,16 +30,19 @@ public class CartController {
     private final GetCartUseCase get;
     private final AddItemToCartUseCase addItem;
     private final RemoveItemToCartUseCase removeItem;
+    private final ClearCartUseCase clearCart;
 
     public CartController ( 
         CreateCartUseCase create, 
         GetCartUseCase get,
         AddItemToCartUseCase addItem,
-        RemoveItemToCartUseCase removeItem ) {
+        RemoveItemToCartUseCase removeItem,
+        ClearCartUseCase clearCart ) {
         this.create = create;
         this.get = get;
         this.addItem = addItem;
         this.removeItem = removeItem;
+        this.clearCart = clearCart;
     }
 
     @PostMapping("/{userId}")
@@ -60,6 +65,15 @@ public class CartController {
     public ResponseEntity<Void> addItem ( @RequestBody AddItemInput input ) {
 
         addItem.execute(input);
+
+        return ResponseEntity.ok().build();
+
+    }
+
+    @PostMapping("/clearCart/{cartId}")
+    public ResponseEntity<Void> clearCart ( @PathVariable UUID cartId ) {
+
+        clearCart.execute(CartId.of(cartId));
 
         return ResponseEntity.ok().build();
 

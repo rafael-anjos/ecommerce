@@ -1,6 +1,8 @@
 package com.api.ecommerce.infra.persistence.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.api.ecommerce.core.domain.entity.Cart;
 import com.api.ecommerce.core.domain.entity.CartItem;
@@ -33,7 +35,7 @@ public class CartMapper {
         List<CartItemEntity> items = cart.getItems().stream()
         .map(cartItemMapper::toEntity)
         .peek(item -> item.setCart(entity))
-        .toList();
+        .collect(Collectors.toCollection(ArrayList::new));
 
         entity.setItems(items);
 

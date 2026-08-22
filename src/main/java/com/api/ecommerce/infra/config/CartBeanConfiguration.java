@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.api.ecommerce.core.application.usecase.cart.AddItemToCartUseCase;
+import com.api.ecommerce.core.application.usecase.cart.ClearCartUseCase;
 import com.api.ecommerce.core.application.usecase.cart.CreateCartUseCase;
 import com.api.ecommerce.core.application.usecase.cart.GetCartUseCase;
 import com.api.ecommerce.core.application.usecase.cart.RemoveItemToCartUseCase;
@@ -12,6 +13,7 @@ import com.api.ecommerce.core.domain.repository.ProductRepository;
 import com.api.ecommerce.infra.persistence.mapper.CartItemMapper;
 import com.api.ecommerce.infra.persistence.mapper.CartMapper;
 import com.api.ecommerce.infra.persistence.repository.cart.JpaCartRepositoryAdapter;
+import com.api.ecommerce.infra.persistence.repository.cart.SpringDataCartItemRepository;
 import com.api.ecommerce.infra.persistence.repository.cart.SpringDataCartRepository;
 
 @Configuration
@@ -32,9 +34,16 @@ public class CartBeanConfiguration {
     }
 
     @Bean
-    public CartRepository cartRepository ( SpringDataCartRepository repository, CartMapper mapper ) {
+    public CartRepository cartRepository ( SpringDataCartRepository repository, SpringDataCartItemRepository cartItemRepository, CartMapper mapper ) {
 
-        return new JpaCartRepositoryAdapter(repository, mapper);
+        return new JpaCartRepositoryAdapter(repository, cartItemRepository, mapper);
+
+    }
+
+    @Bean
+    public ClearCartUseCase clearCart ( CartRepository repository ) {
+
+        return new ClearCartUseCase(repository);
 
     }
 

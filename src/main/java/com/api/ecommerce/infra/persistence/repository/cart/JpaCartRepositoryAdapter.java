@@ -2,10 +2,13 @@ package com.api.ecommerce.infra.persistence.repository.cart;
 
 import java.util.Optional;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.api.ecommerce.core.domain.entity.Cart;
 import com.api.ecommerce.core.domain.repository.CartRepository;
 import com.api.ecommerce.core.domain.valueobject.cart.CartId;
 import com.api.ecommerce.core.domain.valueobject.cart.CartStatus;
+import com.api.ecommerce.core.domain.valueobject.product.ProductId;
 import com.api.ecommerce.core.domain.valueobject.user.UserId;
 import com.api.ecommerce.infra.persistence.entity.CartEntity;
 import com.api.ecommerce.infra.persistence.mapper.CartMapper;
@@ -13,10 +16,12 @@ import com.api.ecommerce.infra.persistence.mapper.CartMapper;
 public class JpaCartRepositoryAdapter implements CartRepository {
     
     private final SpringDataCartRepository repository;
+    private final SpringDataCartItemRepository cartItemRepository;
     private final CartMapper mapper;
 
-    public JpaCartRepositoryAdapter ( SpringDataCartRepository repository, CartMapper mapper ) {
+    public JpaCartRepositoryAdapter ( SpringDataCartRepository repository, SpringDataCartItemRepository cartItemRepository, CartMapper mapper ) {
         this.repository = repository;
+        this.cartItemRepository = cartItemRepository;
         this.mapper = mapper;
     }
 
@@ -47,6 +52,15 @@ public class JpaCartRepositoryAdapter implements CartRepository {
 
         return repository.existsByUserId(userId.value());
         
+    }
+
+    @Transactional
+    public void removeItem ( CartId cartId, ProductId productId ) {
+
+        cartItemRepository.deleteByCartIdAndProductId(
+            cartId.value(), 
+            productId.value());
+
     }
 
 

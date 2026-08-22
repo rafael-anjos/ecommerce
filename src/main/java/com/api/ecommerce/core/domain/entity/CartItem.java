@@ -54,6 +54,12 @@ public class CartItem {
 
     }
 
+    public void changeQuantity ( Quantity quantity ) {
+
+        this.quantity = quantity;
+        
+    }
+
     public static CartItem restore ( CartItemId id, ProductId productId, ProductName productName, Quantity quantity, Money valueCartItem ) {
 
         return new CartItem(id, productId, productName, quantity, valueCartItem);

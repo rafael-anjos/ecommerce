@@ -1,7 +1,6 @@
 package com.api.ecommerce.core.application.usecase.cart;
 
 import com.api.ecommerce.core.application.dto.request.cart.RemoveItemInput;
-import com.api.ecommerce.core.domain.entity.Cart;
 import com.api.ecommerce.core.domain.exception.ResourceNotFoundException;
 import com.api.ecommerce.core.domain.repository.CartRepository;
 import com.api.ecommerce.core.domain.valueobject.cart.CartId;
@@ -17,12 +16,13 @@ public class RemoveItemToCartUseCase {
 
     public void execute ( RemoveItemInput input ) {
 
-        Cart cart = repository.findById(CartId.of(input.cartId()))
+        repository.findById(CartId.of(input.cartId()))
         .orElseThrow(() -> new ResourceNotFoundException());
 
-        cart.removeItem(ProductId.of(input.productId()));
+        repository.removeItem(
+            CartId.of(input.cartId()), 
+            ProductId.of(input.productId()));
 
-        repository.save(cart);
 
     }
 

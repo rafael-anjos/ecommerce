@@ -47,4 +47,22 @@ public class CartEntity {
 
     private LocalDateTime updatedAt;
 
+    public void removeItem ( UUID productId ) {
+
+        items.removeIf(
+
+            item -> item.getProductId().equals(productId)
+            
+        );
+
+    }
+
+    public void addItem ( CartItemEntity item ) {
+
+        item.setCart(this);
+
+        items.add(item);
+
+    }
+
 }
